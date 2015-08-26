@@ -25,3 +25,7 @@ proguard/
 
 # Log Files
 *.log
+
+#myapp
+myapp/node_modules/
+myapp/platforms/
