@@ -28,4 +28,3 @@ proguard/
 
 #myapp
 myapp/node_modules/
-myapp/platforms/

@@ -45,8 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
       url: '/map',
       views: {
         'menuContent': {
-          templateUrl: 'templates/map.html'//,
-          //controller: 'MapCtrl'
+          templateUrl: 'templates/map.html',
+          controller: 'MapCtrl'
         }
       }
   });

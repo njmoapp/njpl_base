@@ -31,16 +31,13 @@ angular.module('starter.directives', [])
               alert('failed' + this.getStatus());
             }
         },{enableHighAccuracy: false});
-    	 
 
-//      var marker = new BMap.Marker(point);
-//      map.addOverlay(marker);
-//      $scope.onCreate({map: map});
+        $scope.onCreate({map: map});
 //      $scope.map = map;
       }
 
       window.onload = initialize;
-      window.onreload = initialize;
+//    window.onreload = initialize;
     }
   }
 });
