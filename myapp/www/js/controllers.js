@@ -41,6 +41,22 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('CartController', function($scope) {
+      $scope.items = [
+        {title: 'pots', qty: 8, price: 3.95},
+        {title: 'dots', qty: 10, price: 12.95},
+        {title: 'pebble', qty: 7, price: 6.95},
+        {title: 'apple', qty: 10, price: 1.00},
+        {title: 'orange', qty: 10, price: 1.50},
+        {title: 'coconut', qty: 10, price: 2.00},
+        {title: 'lemon', qty: 10, price: 5.00}
+      ];
+
+      $scope.remove = function(index) {
+        $scope.items.splice(index, 1);
+      }
+})
+
 // .controller('PlaylistsCtrl', function($scope) {
 //   $scope.playlists = [
 //     { title: 'Reggae', id: 1 },
@@ -87,7 +103,7 @@ angular.module('starter.controllers', [])
           else {
             alert('failed'+this.getStatus());
           }
-        },{enableHighAccuracy: true});
+        },{enableHighAccuracy: false});
       }
 
       function onError(error) {

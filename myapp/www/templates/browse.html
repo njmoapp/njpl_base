@@ -1,5 +1,13 @@
 <ion-view view-title="Browse">
   <ion-content>
-    <h1>Browse</h1>
+    <center>
+	<div ng-repeat='item in items'>
+		<span>{{item.title}}</span>
+		<input ng-model='item.qty' style="width:50px;">
+		<span>{{item.price | currency}}</span>
+		<span>{{item.price * item.qty | currency}}</span>
+		<button ng-click="remove($index)">Remove</button>
+	</div>
+	</center>
   </ion-content>
 </ion-view>
