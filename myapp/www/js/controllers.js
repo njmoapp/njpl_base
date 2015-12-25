@@ -92,16 +92,17 @@ angular.module('starter.controllers', [])
       function onSuccess(position) {
         var geolocation = new BMap.Geolocation();
         geolocation.getCurrentPosition(function(r){
-          if(this.getStatus() == BMAP_STATUS_SUCCESS){
+          if(this.getStatus() == BMAP_STATUS_SUCCESS) {
             var marker = new BMap.Marker(r.point);
             $scope.map.addOverlay(marker);
             $scope.map.panTo(r.point);
+
             $ionicLoading.hide();
             console.log('Your position is ' + r.point.lng + ', ' 
               + r.point.lat);
           }
           else {
-            alert('failed'+this.getStatus());
+            alert('failed' + this.getStatus());
           }
         },{enableHighAccuracy: false});
       }

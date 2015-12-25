@@ -26,6 +26,44 @@ angular.module('starter.directives', [])
       });
       map.addControl(geolocationControl);
 
+      // Add a customized control
+      function ZoomControl() {
+        this.defaultAnchor = BMAP_ANCHOR_BOTTOM_LEFT;
+        this.defaultOffset = new BMap.Size(10, 70);
+      }
+      ZoomControl.prototype = new BMap.Control();
+      ZoomControl.prototype.initialize = function(map) {
+        var div = document.createElement("div");
+        div.appendChild(document.createTextNode("停车场"));
+        div.style.cursor = "pointer";
+        div.style.border = "1px solid gray";
+        div.style.background = "yellow";
+        div.onclick = function(e) {
+          function addMarker(point) {
+            var marker = new BMap.Marker(point);
+            marker.addEventListener("click", function(){    
+              alert("you click the marker.");    
+            });
+            $scope.map.addOverlay(marker);
+          }
+          var bounds = map.getBounds();
+          var lngSpan = bounds.maxX - bounds.minX;
+          var latSpan = bounds.maxY - bounds.minY;
+          console.log("lngSpan=" + lngSpan + ", latSpan=" + latSpan);
+          for (var i = 0; i < 10; i++) {
+            var ptx = bounds.minX + lngSpan * (Math.random() * 0.7 + 0.15);
+            var pty = bounds.minY + latSpan * (Math.random() * 0.7 + 0.15);
+            console.log("making points ..." + i + ": " + 100*ptx + ", " + 100*pty);
+            var point = new BMap.Point(x, y);
+            addMarker(point);
+          }
+        }
+        map.getContainer().appendChild(div);
+        return div;
+      }
+      map.addControl(new ZoomControl());
+
+
       myGeo.getPoint($scope.address, function(point) {
         if (point) {
           map.centerAndZoom(point, 16);
