@@ -39,24 +39,40 @@ angular.module('starter.directives', [])
         div.style.border = "1px solid gray";
         div.style.background = "yellow";
         div.onclick = function(e) {
+
           function addMarker(point) {
             var marker = new BMap.Marker(point);
             marker.addEventListener("click", function(){    
               alert("you click the marker.");    
             });
-            $scope.map.addOverlay(marker);
+            map.addOverlay(marker);
           }
+
+          /*
           var bounds = map.getBounds();
-          var lngSpan = bounds.maxX - bounds.minX;
-          var latSpan = bounds.maxY - bounds.minY;
-          console.log("lngSpan=" + lngSpan + ", latSpan=" + latSpan);
-          for (var i = 0; i < 10; i++) {
-            var ptx = bounds.minX + lngSpan * (Math.random() * 0.7 + 0.15);
-            var pty = bounds.minY + latSpan * (Math.random() * 0.7 + 0.15);
-            console.log("making points ..." + i + ": " + 100*ptx + ", " + 100*pty);
+          var lngSpan = bounds.getNorthEast().lng - bounds.getSouthWest().lng;
+          var latSpan = bounds.getNorthEast().lat - bounds.getSouthWest().lat;
+          map.clearOverlays();
+          for (var i = 0; i < 20; i++) {
+            var x = bounds.getSouthWest().lng + lngSpan * (Math.random() * 0.7 + 0.15);
+            var y = bounds.getSouthWest().lat + latSpan * (Math.random() * 0.7 + 0.15);
             var point = new BMap.Point(x, y);
             addMarker(point);
-          }
+          }*/
+          
+          var geoloc = new BMap.Geolocation();
+          geoloc.getCurrentPosition(function(r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+              //console.log(r.point.lng + ", " + r.point.lat);
+              //var circle = new BMap.Circle(r.point, 1400, { fillColor: "blue",
+              //                                              strokeWeight: 1,
+              //                                              fillOpacity: 0.3});
+              //map.addOverlay(circle);
+              var local = new BMap.LocalSearch(map, {renderOptions:
+                              {map: map, autoViewport: false } } );
+              local.searchNearby('停车场', r.point, 1000);
+            }        
+          });
         }
         map.getContainer().appendChild(div);
         return div;
@@ -77,7 +93,6 @@ angular.module('starter.directives', [])
               var marker = new BMap.Marker(r.point);
               map.addOverlay(marker);
               map.centerAndZoom(r.point, 16);
-
          } else {
               alert('failed' + this.getStatus());
          }
