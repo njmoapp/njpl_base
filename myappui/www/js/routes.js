@@ -32,7 +32,7 @@ angular.module('app.routes', [])
     
       
         
-    .state('signup', {
+    .state('parking.signup', {
       url: '/page2',
       templateUrl: 'templates/signup.html',
       controller: 'signupCtrl'

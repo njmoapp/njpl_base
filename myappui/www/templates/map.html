@@ -1,3 +1,13 @@
 <ion-view title="Map">
-    <ion-content overflow-scroll="true" padding="true" class="has-header"></ion-content>
+	
+    <ion-content scroll="false" padding="false" class="has-header">
+
+		<app-map style="height:100%;margin:0px;box-shadow:0 3px 25px black;" address="{{address}}" on-Create="mapCreated(map)"> </app-map>
+
+	</ion-content>
+<!--
+	<ion-footer-bar class="bar-stable">
+		<a ng-click="centerOnMe()" class="button button-icon icon ion-ios-location"></a>
+  	</ion-footer-bar>
+-->
 </ion-view>
