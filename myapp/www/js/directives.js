@@ -28,8 +28,8 @@ angular.module('starter.directives', [])
 
       // Add a customized control
       function ZoomControl() {
-        this.defaultAnchor = BMAP_ANCHOR_BOTTOM_LEFT;
-        this.defaultOffset = new BMap.Size(10, 70);
+        this.defaultAnchor = BMAP_ANCHOR_BOTTOM_RIGHT;
+        this.defaultOffset = new BMap.Size(10, 10);
       }
       ZoomControl.prototype = new BMap.Control();
       ZoomControl.prototype.initialize = function(map) {
@@ -41,7 +41,7 @@ angular.module('starter.directives', [])
         div.onclick = function(e) {
 
           function addMarker(point) {
-            var marker = new BMap.Marker(point);
+            var marker = new BMap.Marker(point);;
             marker.addEventListener("click", function(){    
               alert("you click the marker.");    
             });
