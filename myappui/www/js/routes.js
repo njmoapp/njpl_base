@@ -19,7 +19,7 @@ angular.module('app.routes', [])
       
         
     .state('parking.login', {
-      url: '/page1',
+      url: '/page2',
       views: {
         'side-menu21': {
           templateUrl: 'templates/login.html',
@@ -33,9 +33,13 @@ angular.module('app.routes', [])
       
         
     .state('parking.signup', {
-      url: '/page2',
-      templateUrl: 'templates/signup.html',
-      controller: 'signupCtrl'
+      url: '/page3',
+      views: {
+        'side-menu21': {
+          templateUrl: 'templates/signup.html',
+          controller: 'signupCtrl'
+        }
+      }
     })
         
       
@@ -43,7 +47,7 @@ angular.module('app.routes', [])
       
         
     .state('parking.map', {
-      url: '/page3',
+      url: '/page1',
       views: {
         'side-menu21': {
           templateUrl: 'templates/map.html',
@@ -70,6 +74,6 @@ angular.module('app.routes', [])
     ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/side-menu21/page3');
+  $urlRouterProvider.otherwise('/side-menu21/page1');
 
 });
